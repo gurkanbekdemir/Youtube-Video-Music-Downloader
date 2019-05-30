@@ -2,7 +2,7 @@
 Youtube video and music downloader with python
 
 ###
-Tkinter
 Python
+Tkinter
 Pytube
 ###

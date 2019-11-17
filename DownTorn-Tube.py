@@ -2,11 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import os
 
-
-print("(9) = varolan bir dosya oluşturulamaz""\n"
-      "(1) = Miktar hatası")
-
-
+print("(9) = varolan bir dosya oluşturulamaz""\n (1) = Miktar hatası")
 root = Tk()
 root.geometry("740x420")
 root.resizable(FALSE,FALSE)
@@ -19,10 +15,6 @@ background_label.place(x=0, y=0, relwidth=1, relheight=1)
 background_label.image = arkaplan
 
 indir_resim = PhotoImage(file="images/Download-icon.png")
-
-
-
-
 #####################
 tekrar = 0
 dosya_olusturma = 0
@@ -31,16 +23,13 @@ path = os.path.expanduser('~')
 path = path+"\Documents"
 istikamet = path + "\DownTorn-Tube"
 
-
 try:
     os.mkdir(istikamet)
 except:
     print("Hata Kodu : 9")
 
-
 def cik(event=None):
     sys.exit()
-
 
 def url():
     global path
@@ -48,15 +37,15 @@ def url():
     link = video_url.get()
     yt = YouTube(str(link))
     videos = yt.streams.all()
-    hangisini_sec = kalite_select.get()
+    secim = kalite_select.get()
     perde.destroy()
 
-    s = 1
+    count = 1
     fark = 0
-    if (s >= 1):
+    if (count >= 1):
         for v in videos:
-            if (s < 21):
-                text = str(s) + ".  Akış etiketi  :" + str(v)
+            if (count < 21):
+                text = str(count) + ".  Akış etiketi  :" + str(v)
                 text = text.replace('<Stream: itag="', "")
                 text = text.replace('"', "")
                 text = text.replace("=", "  : ")
@@ -74,16 +63,16 @@ def url():
                 cikti = Label(text=text, font="Arial 8", bg="black", fg="#679CFF")
                 cikti.pack()
                 cikti.place(x=0, y=fark)
-                s += 1
+                count += 1
                 fark += 15
 
     global tekrar
     try:
         tekrar += 1
-        n = int(hangisini_sec)
-        vid = videos[n - 1]
+        secim_ham = int(secim)
+        video = videos[secim_ham - 1]
         destination = str(istikamet)
-        vid.download(destination)
+        video.download(destination)
 
     except ModuleNotFoundError:
         print("Modül Bulunamadı")
@@ -93,15 +82,11 @@ def url():
         tekrar += 1
         pass
 
-
     if tekrar == 3:
-        a = "Linkini verdiğiniz youtube videosu   " + istikamet + " konumuna indi"
-        print("\n" + a)
-        messagebox.showinfo("Videonuz İndi", a)
+        mesaj = "Linkini verdiğiniz youtube videosu   " + istikamet + " konumuna indi"
+        print("\n" + mesaj)
+        messagebox.showinfo("Videonuz İndi", mesaj)
 
-
-
-#####################
 video_text = Label(text="Video linkini giriniz",bg="black",fg="#ff8900",font="Verdana 12")
 video_text.pack()
 video_text.place(x=15,y=330)
@@ -113,28 +98,22 @@ video_url.place(x=30,y=370)
 getir = Button(text="               Getir              ",command=url,bg="green",fg="white")
 getir.pack()
 getir.place(x=31,y=390)
-####################
 
-####################
-kalite_text = Label(text="Hangi kaliteyi istiyorsunuz. \n Üsteki tabloya bakınız. Örn* 5",bg="black",fg="#ff8900",font="Georgia 10")
-kalite_text.pack()
-kalite_text.place(x=200,y=330)
+kalite_yazi = Label(text="Hangi kaliteyi istiyorsunuz. \n Üsteki tabloya bakınız. Örn* 5",bg="black",fg="#ff8900",font="Georgia 10")
+kalite_yazi.pack()
+kalite_yazi.place(x=200,y=330)
 
-kalite_select = Entry()
-kalite_select.pack()
-kalite_select.place(x=230,y=368)
-##################
-
-
+kalite_secim = Entry()
+kalite_secim.pack()
+kalite_secim.place(x=230,y=368)
 
 perde = Label(text="                                                                  \n                                                                   \n                                                                   \n",bg="black")
 perde.pack()
 perde.place(x=200,y=330)
 
-
-video_ok = Button(root,command=url,bg="black",image=indir_resim)
-video_ok.pack()
-video_ok.place(x=660,y=341)
+video_indir = Button(root,command=url,bg="black",image=indir_resim)
+video_indir.pack()
+video_indir.place(x=660,y=341)
 
 yatay_dowloand_cerceve =  Label(text="                                   ",bg="black",fg="black")
 yatay_dowloand_cerceve.pack()

@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import os
 
-print("(9) = varolan bir dosya oluşturulamaz""\n (1) = Miktar hatası")
+
 root = Tk()
 root.geometry("740x420")
 root.resizable(FALSE,FALSE)
@@ -26,7 +26,7 @@ istikamet = path + "\DownTorn-Tube"
 try:
     os.mkdir(istikamet)
 except:
-    print("Hata Kodu : 9")
+    print("Varolan bir dosya oluşturulamaz")
 
 def cik(event=None):
     sys.exit()
@@ -78,7 +78,7 @@ def url():
         print("Modül Bulunamadı")
 
     except ValueError:
-        print("Hata kodu : 1")
+        print("Miktar hatası")
         tekrar += 1
         pass
 
